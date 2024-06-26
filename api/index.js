@@ -7,8 +7,8 @@ dotenv.config();
 mongoose.connect(process.env.MONGO, {
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
-    socketTimeoutMS: 45000,
+    // serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+    // socketTimeoutMS: 45000,
 }).then(() => {
     console.log('MongoDb is connected');
 }).catch((err) => {
