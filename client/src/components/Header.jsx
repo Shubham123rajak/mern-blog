@@ -2,11 +2,13 @@ import React from 'react'
 // import {FaMagento, FaMoon, FaSearch} from 'react-icons/fa';
 import { AiOutlineSearch} from 'react-icons/ai'
 import { Link,useLocation} from 'react-router-dom';
-import { Button, Navbar, TextInput } from 'flowbite-react';
+import { Avatar, Button, Dropdown, DropdownDivider, DropdownHeader, DropdownItem, Navbar, TextInput } from 'flowbite-react';
 import { FaMoon } from 'react-icons/fa';
+import {useSelector} from 'react-redux';
 
 export default function Header() {
     const path = useLocation().pathname;
+    const {currentUser} = useSelector(state => state.user)
   return (
     <Navbar className='border-b-2'>
         <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
@@ -24,9 +26,25 @@ export default function Header() {
             <Button className='w-12 h-10 hidden sm:inline' color='gray' pill>
                 <FaMoon />
             </Button>
-            <Link to='/sign-in'>
+            {currentUser ? (
+                <Dropdown arrowIcon = {false} inline label={
+                    <Avatar alt='user' img={currentUser.profilePicture} rounded/>
+                }>
+                <DropdownHeader>
+                    <span className='block text-sm'> @{currentUser.username}</span>
+                    <span className='block text-sm font-medium truncate'>{currentUser.email}</span>
+                </DropdownHeader>
+                <Link to={'/dashboard?tab=profile'}>
+                    <Dropdown.Item>profile</Dropdown.Item>
+                </Link>
+                <Dropdown.Divider/>
+                <Dropdown.Item>Sign Out</Dropdown.Item>
+                </Dropdown>
+            ):(
+                <Link to='/sign-in'>
                 <Button gradientDuoTone='purpleToBlue' outline>Sign In</Button>
-            </Link>
+                </Link>
+            )}
             <Navbar.Toggle/>
         </div>
             <Navbar.Collapse>
