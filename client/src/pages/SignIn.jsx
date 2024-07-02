@@ -33,7 +33,7 @@ function SignIn() {
           dispatch(signInFailure(data.message));
         }
         if(res.ok){
-          dispatch(signInSuccess(data))
+          dispatch(signInSuccess(data));
           navigate('/');
         }
     } catch (error) {
@@ -75,13 +75,13 @@ function SignIn() {
               ):('sign In'
              )}
             </Button>
-          
+            <OAuth/>
            </form>
            <div className="flex gap-2 text-sm mt-5">
             <span>
             Don't  Have an Account?
             </span>
-            <Link to='/sigin-up' className='text-blue-500'>
+            <Link to='/sign-up' className='text-blue-500'>
               Sign Up
             </Link>
            </div>
