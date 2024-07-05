@@ -50,8 +50,8 @@ const userSlice = createSlice({
         },
         signoutSuccess: (state) => {
             state.currentUser = null;
-            state.loading = false;
             state.error = null;
+            state.loading = false;
         }
     },
 
