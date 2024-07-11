@@ -84,11 +84,6 @@ export const deletepost = async (req, res, next) => {
 };
 
 export const updatepost = async (req, res, next) => {
-    console.log('Request URL:', req.originalUrl);
-    console.log('Request Method:', req.method);
-    console.log('Request Parameters:', req.params);
-    console.log('Request Body:', req.body);
-    console.log('User:', req.user);
     if (!req.user.isAdmin || req.user.id !== req.params.userId) {
         return next(errorHandler(403, 'You are not allowed to update this post'));
     }
